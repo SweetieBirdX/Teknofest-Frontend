@@ -1,12 +1,70 @@
-# React + Vite
+# METUChain Drone Simülasyonu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Blokzincir Destekli İHA/SİHA ve Orijin Takip Sistemi  
+**2025 Teknofest Blokzincir Yarışması**  
+Takım ID: 736026  
+Başvuru ID: 3614435
 
-Currently, two official plugins are available:
+## Proje Hakkında
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Bu proje, gerçek zamanlı drone (İHA/SİHA) simülasyonu ve parça orijin takibi sunar.  
+Amaç, birden fazla drone'un uçuş verilerini, anomali tespitlerini ve parça geçmişini kullanıcı dostu bir arayüzde sunmak ve yönetmektir.
 
-## Expanding the ESLint configuration
+## Özellikler
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Gerçek Zamanlı Drone Takibi:**  
+  Canlı harita üzerinde drone konumunu ve uçuş verilerini izleyin.
+
+- **Anomali Tespiti ve Yönetimi:**  
+  Rota değişikliği, irtifa kaybı, hız düşüşü gibi anomali senaryolarını simüle edin ve anlık olarak görüntüleyin.
+
+- **Veri Geçmişi (Log):**  
+  Drone'dan gelen tüm veriler saniyede iki kez kaydedilir, geçmişe dönük olarak incelenebilir ve kolayca kopyalanabilir.
+
+- **Parça Takibi:**  
+  Her drone için parça listesi, tedarikçi, seri numarası ve montaj tarihiyle birlikte görüntülenir. Drone seçimine göre ilgili görsel ve bilgiler değişir.
+
+- **Kapsamlı Dashboard:**  
+  Durum göstergeleri, batarya seviyesi, hız, irtifa, bağlantı durumu ve anomali kontrol paneli tek ekranda.
+
+## Kullanılan Teknolojiler
+
+- **React** (Vite ile hızlı geliştirme ortamı)
+- **TailwindCSS** (modern ve responsive arayüz)
+- **React Router** (sayfa geçişleri)
+- **Leaflet & React-Leaflet** (harita ve konum gösterimi)
+- **Simülasyon Motoru:**  
+  `src/sim/DroneSimulator.js` dosyasında, drone hareketleri ve anomali senaryoları simüle edilir.
+
+## Kurulum ve Çalıştırma
+
+1. **Bağımlılıkları yükleyin:**
+   ```
+   npm install
+   ```
+
+2. **Geliştirme sunucusunu başlatın:**
+   ```
+   npm run dev
+   ```
+
+3. **Uygulamayı açın:**  
+   [http://localhost:5173](http://localhost:5173)
+
+## Klasör Yapısı
+
+- `src/pages/`  
+  - **Dashboard.jsx:** Ana kontrol paneli ve canlı izleme ekranı  
+  - **DroneData.jsx:** Drone parça geçmişi ve görselleri
+- `src/components/`  
+  - **DataLogPanel.jsx:** Veri geçmişi ve kopyalama özelliği  
+  - **AnomalyControlPanel.jsx:** Anomali senaryoları ve bağlantı durumu  
+  - **StatusBar.jsx, Map.jsx, LiveDataDetails.jsx, DroneStatusCard.jsx:** Diğer yardımcı bileşenler
+- `src/sim/`  
+  - **DroneSimulator.js:** Simülasyon motoru  
+  - **DroneDataAPI.js:** API arayüzü
+
+## Katkı ve Lisans
+
+Bu proje Teknofest yarışması için geliştirilmiştir.  
+Her türlü katkı ve öneri için iletişime geçebilirsiniz.
