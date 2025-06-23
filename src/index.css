@@ -1,0 +1,89 @@
+/* === File: index.css === */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #1E1E2F;
+  color: #E0E0E0;
+}
+
+html, body {
+  background: #f4f4f4 !important;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid #3a3a3a;
+}
+
+/* Optional additional utilities */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+} 
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fade-in 0.7s ease-in;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down {
+  animation: slide-down 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.anomaly-btn:hover, .anomaly-btn:focus {
+  color: #fff !important;
+}
+.anomaly-btn:hover i, .anomaly-btn:focus i,
+.anomaly-btn:hover span, .anomaly-btn:focus span {
+  color: #fff !important;
+}
+
+.normal-mode-btn:hover, .normal-mode-btn:focus {
+  color: #fff !important;
+}
+.normal-mode-btn:hover i, .normal-mode-btn:focus i,
+.normal-mode-btn:hover span, .normal-mode-btn:focus span {
+  color: #fff !important;
+}
+
+.disconnected-btn:hover, .disconnected-btn:focus {
+  color: #fff !important;
+}
+.disconnected-btn:hover span, .disconnected-btn:focus span {
+  color: #fff !important;
+}
+
+.start-btn:hover, .start-btn:focus {
+  color: #fff !important;
+}
+.start-btn:hover i, .start-btn:focus i,
+.start-btn:hover span, .start-btn:focus span {
+  color: #fff !important;
+} 
