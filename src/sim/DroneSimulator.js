@@ -20,6 +20,7 @@ export default class DroneSimulator {
 
     this.isRunning = false;
     this.intervalId = null;
+    this.altitudeLossStep = 0;
     this._startLoop();
   }
 
@@ -121,6 +122,21 @@ export default class DroneSimulator {
         this.drone.altitude = Math.max(0, this.drone.altitude - 2);
         this.drone.battery = Math.max(0, this.drone.battery - 0.05);
         this.drone.status = 'ANOMALİ: İrtifa Kaybı';
+
+        if (this.drone.altitude === 0) {
+          if (this.altitudeLossStep === 0) {
+            this.drone.speed = 10; 
+            this.altitudeLossStep = 1;
+          } else if (this.altitudeLossStep > 0 && this.altitudeLossStep < 8) {
+            this.drone.speed = Math.max(0, this.drone.speed - 1.25); 
+            this.altitudeLossStep += 1;
+          } else if (this.altitudeLossStep >= 8) {
+            this.drone.speed = 0;
+            this.altitudeLossStep = 8;
+          }
+        } else {
+          this.altitudeLossStep = 0; 
+        }
         break;
       case 'speed':
         this.drone.speed = Math.max(10, this.drone.speed - 1);
@@ -165,6 +181,7 @@ export default class DroneSimulator {
     this.currentMode = "normal";
     this.drone.speed = 60;
     this.drone.altitude = 100;
+    this.altitudeLossStep = 0;
     this.setNewTarget();
   }
 
@@ -220,6 +237,7 @@ export default class DroneSimulator {
 
     this.currentMode = "normal";
     this.dataHistory = [];
+    this.altitudeLossStep = 0;
   }
 
   start() {
