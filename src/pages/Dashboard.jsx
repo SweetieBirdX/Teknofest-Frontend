@@ -128,8 +128,7 @@ export default function Dashboard({ droneData, api, onStart, onStop, onReset }) 
             <div className="flex items-center gap-8">
               <button
                 className="bg-[#4ade80] hover:bg-[#bbf7d0] text-[#065f46] font-bold py-3 px-6 rounded-full transition-colors duration-200 text-lg border-none focus:outline-none"
-                onClick={() => window.open('/dronedata', '_blank')}
-              >
+                onClick={() => navigate('/dronedata')}              >
                 Drone Bilgileri
               </button>
               <select

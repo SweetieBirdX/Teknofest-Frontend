@@ -36,17 +36,17 @@ function App() {
         <Routes>
           <Route path="/" element={
             droneData && api ? (
-              <Dashboard 
-                droneData={droneData} 
-                api={api} 
-                onStart={handleStartSimulation}
-                onStop={handleStopSimulation}
-                onReset={handleResetSimulation}
-              />
-            ) : (
-              <div className="flex items-center justify-center h-[calc(100vh-200px)]">
-                <p className="text-xl text-[#888888]">Yükleniyor...</p>
-              </div>
+          <Dashboard 
+            droneData={droneData} 
+            api={api} 
+            onStart={handleStartSimulation}
+            onStop={handleStopSimulation}
+            onReset={handleResetSimulation}
+          />
+        ) : (
+          <div className="flex items-center justify-center h-[calc(100vh-200px)]">
+            <p className="text-xl text-[#888888]">Yükleniyor...</p>
+          </div>
             )
           } />
           <Route path="/dronedata" element={<DroneData />} />
