@@ -6,6 +6,7 @@ import StatusBar from "../components/StatusBar";
 import Map from "../components/Map";
 import LiveDataDetails from "../components/LiveDataDetails";
 import { BatteryBox } from "../components/DroneStatusCard";
+import AnomalyTestButton from "../components/AnomalyTestButton";
 import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard({ droneData, api, onStart, onStop, onReset }) {
@@ -115,6 +116,8 @@ export default function Dashboard({ droneData, api, onStart, onStop, onReset }) 
         </div>
         <div className="space-y-2">
           <AnomalyControlPanel api={api} />
+          {/* Anomali Test Butonu */}
+          <AnomalyTestButton api={api} />
         </div>
       </div>
 
