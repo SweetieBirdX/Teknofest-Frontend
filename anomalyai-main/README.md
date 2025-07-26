@@ -1,2 +1,0 @@
-# anomalyai
-Anomaly Detector

@@ -186,15 +186,4 @@ export default function Dashboard({ droneData, api, onStart, onStop, onReset }) 
   );
 }
 
-<style>
-{`
-@keyframes statusPulse {
-  0% { background-color: #1ee82e; }
-  50% { background-color: #22c55e; }
-  100% { background-color: #1ee82e; }
-}
-.status-pulse-anim {
-  animation: statusPulse 1.2s ease-in-out infinite;
-}
-`}
-</style>
+
