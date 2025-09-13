@@ -1,4 +1,4 @@
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
@@ -16,20 +16,17 @@ export default function LiveMapDisplay({ coordinates }) {
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden">
-      <MapContainer
-        center={position}
-        zoom={13}
-        scrollWheelZoom={true}
-        style={{ height: "100px", width: "50%" }}
-      >
+    <div>
+      <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
         <Marker position={position} icon={droneIcon}>
           <Popup>
-            Drone Konumu<br />({coordinates.x}, {coordinates.y})
+            Drone Konumu
+            <br />({coordinates.x}, {coordinates.y})
           </Popup>
         </Marker>
       </MapContainer>

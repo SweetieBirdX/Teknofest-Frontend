@@ -1,78 +1,214 @@
-import React from 'react';
+import React from "react";
 
 export default function LiveDataDetails({ data }) {
-  const displayCoordinates = data?.coordinates ? `[${data.coordinates.x}, ${data.coordinates.y}]` : '--, --';
-  const displayAltitude = data?.altitude !== undefined ? `${data.altitude} M` : '-- M';
-  const displaySpeed = data?.speed !== undefined ? `${data.speed} KM/H` : '-- KM/H';
-  const displayDirection = data?.direction !== undefined ? `${Math.round(data.direction)} DERECE` : '-- DERECE';
-  const displayStatus = data?.status || 'Bilinmiyor';
-  const displayBattery = data?.battery !== undefined ? `${data.battery}%` : '--%';
-  const displayTime = data?.timestamp ? new Date(data.timestamp).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : '--:--:--';
-
-  const isAnomaly = displayStatus.toLowerCase().includes("anomali") || displayStatus.toLowerCase().includes("rota dışı") || displayStatus.toLowerCase().includes("irtifa");
-  const statusColorClass = isAnomaly ? 'text-[#F44336]' : 'text-[#4CAF50]';
-  const batteryColorClass = (data?.battery !== undefined && data.battery < 20) ? 'text-[#F44336]' : 'text-[#4CAF50]';
-
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="bg-white p-4 rounded-lg border border-[#b2dfdb]">
-        <h3 className="text-[#009966] font-medium mb-2">Konum</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span className="text-[#888888]">X:</span>
-            <span className="text-black">{data?.coordinates?.x || 0}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Y:</span>
-            <span className="text-black">{data?.coordinates?.y || 0}</span>
+    <div style={{ margin: "20px 0" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "1fr 1fr",
+          gap: "0",
+          border: "2px solid #e2e8f0",
+          borderRadius: "20px",
+          backgroundColor: "white",
+          width: "534px",
+          height: "355px",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05)",
+          overflow: "hidden",
+        }}
+      >
+        {/* Top-Left: Konum */}
+        <div
+          style={{
+            borderRight: "1px solid #e2e8f0",
+            borderBottom: "1px solid #e2e8f0",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "linear-gradient(135deg, #f8fafc, #f1f5f9)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #f1f5f9, #e2e8f0)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #f8fafc, #f1f5f9)";
+          }}
+        >
+          <h3
+            style={{
+              margin: "0 0 20px 0",
+              fontWeight: "700",
+              fontSize: "18px",
+              textAlign: "center",
+              width: "100%",
+              color: "#1e293b",
+              letterSpacing: "0.5px",
+            }}
+          >
+            📍 Konum
+          </h3>
+          <div style={{ width: "100%" }}>
+            <div style={{ marginBottom: "12px", textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#64748b" }}>X:</span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#1e293b", fontWeight: "500" }}>
+                {data?.coordinates?.x || 0}
+              </span>
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#64748b" }}>Y:</span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#1e293b", fontWeight: "500" }}>
+                {data?.coordinates?.y || 0}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-white p-4 rounded-lg border border-[#b2dfdb]">
-        <h3 className="text-[#009966] font-medium mb-2">Uçuş</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Hız:</span>
-            <span className="text-black">{displaySpeed}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Yön:</span>
-            <span className="text-black">{displayDirection}</span>
+        {/* Top-Right: Uçuş */}
+        <div
+          style={{
+            borderBottom: "1px solid #e2e8f0",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "linear-gradient(135deg, #fef3c7, #fde68a)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #fde68a, #fcd34d)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #fef3c7, #fde68a)";
+          }}
+        >
+          <h3
+            style={{
+              margin: "0 0 20px 0",
+              fontWeight: "700",
+              fontSize: "18px",
+              textAlign: "center",
+              width: "100%",
+              color: "#92400e",
+              letterSpacing: "0.5px",
+            }}
+          >
+            ✈️ Uçuş
+          </h3>
+          <div style={{ width: "100%" }}>
+            <div style={{ marginBottom: "12px", textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#a16207" }}>Hız:</span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#92400e", fontWeight: "500" }}>
+                {data?.speed || 0}km/s
+              </span>
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#a16207" }}>Yön:</span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#92400e", fontWeight: "500" }}>
+                {data?.direction || 0}°
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-white p-4 rounded-lg border border-[#b2dfdb]">
-        <h3 className="text-[#009966] font-medium mb-2">Durum</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Mod:</span>
-            <span className="text-black">
-              {data?.mode === 'route' ? 'Rota' :
-               data?.mode === 'altitude' ? 'İrtifa' :
-               data?.mode === 'speed' ? 'Hız' :
-               data?.mode === 'normal' ? 'Normal' :
-               data?.mode}
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Durum:</span>
-            <span className={`${statusColorClass}`}>{displayStatus}</span>
+        {/* Bottom-Left: Durum */}
+        <div
+          style={{
+            borderRight: "1px solid #e2e8f0",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "linear-gradient(135deg, #dbeafe, #bfdbfe)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #bfdbfe, #93c5fd)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #dbeafe, #bfdbfe)";
+          }}
+        >
+          <h3
+            style={{
+              margin: "0 0 20px 0",
+              fontWeight: "700",
+              fontSize: "18px",
+              textAlign: "center",
+              width: "100%",
+              color: "#1e40af",
+              letterSpacing: "0.5px",
+            }}
+          >
+            📊 Durum
+          </h3>
+          <div style={{ width: "100%" }}>
+            <div style={{ marginBottom: "12px", textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#3730a3" }}>Mod:</span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#1e40af", fontWeight: "500" }}>
+                {data?.mode || "N/A"}
+              </span>
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#3730a3" }}>
+                Durum:
+              </span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#1e40af", fontWeight: "500" }}>
+                {data?.status || "Beklemede"}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="bg-white p-4 rounded-lg border border-[#b2dfdb]">
-        <h3 className="text-[#009966] font-medium mb-2">Sistem</h3>
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <span className="text-[#888888]">Batarya:</span>
-            <span className={batteryColorClass}>{displayBattery}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-[#888888]">İrtifa:</span>
-            <span className="text-black">{displayAltitude}</span>
+        {/* Bottom-Right: Sistem */}
+        <div
+          style={{
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "linear-gradient(135deg, #f0fdf4, #dcfce7)",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #dcfce7, #bbf7d0)";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = "linear-gradient(135deg, #f0fdf4, #dcfce7)";
+          }}
+        >
+          <h3
+            style={{
+              margin: "0 0 20px 0",
+              fontWeight: "700",
+              fontSize: "18px",
+              textAlign: "center",
+              width: "100%",
+              color: "#166534",
+              letterSpacing: "0.5px",
+            }}
+          >
+            ⚙️ Sistem
+          </h3>
+          <div style={{ width: "100%" }}>
+            <div style={{ marginBottom: "12px", textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#15803d" }}>
+                Batarya:
+              </span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#166534", fontWeight: "500" }}>
+                {data?.battery || 0}%
+              </span>
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <span style={{ fontWeight: "600", fontSize: "14px", color: "#15803d" }}>
+                İrtifa:
+              </span>
+              <span style={{ marginLeft: "12px", fontSize: "16px", color: "#166534", fontWeight: "500" }}>
+                {data?.altitude || 0}m
+              </span>
+            </div>
           </div>
         </div>
       </div>
